@@ -20,6 +20,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "tailwindcss": "^4",
+    "tailwindcss-golden-ratio": "^3.3.6",
     "typescript": "^5"
   }
 }
