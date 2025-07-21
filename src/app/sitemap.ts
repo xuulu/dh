@@ -2,8 +2,9 @@
 import {MetadataRoute} from "next";
 import {config} from "@/config";
 
-const baseUrl = config.baseUrl
+export const dynamic = 'force-static';
 
+const baseUrl = config.baseUrl
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
