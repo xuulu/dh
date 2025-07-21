@@ -1,6 +1,7 @@
 import type {MetadataRoute} from 'next'
+import {config} from "@/config";
 
-const baseUrl = process.env.NEXT_PUBLIC_API_URL
+const baseUrl = config.baseUrl
 
 export default function robots(): MetadataRoute.Robots {
     return {
