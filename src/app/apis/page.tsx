@@ -1,6 +1,6 @@
 import type {Metadata} from "next"
 import {apis} from "@/apis"
-import ItemApi from "@/components/items/itemApi"
+import ItemsComponent from "@/components/items";
 import {config} from "@/config";
 
 const found = config.url.find(
@@ -17,7 +17,7 @@ export default async function Home() {
     const items = await apis()
     return (
         <>
-            <ItemApi items={items}/>
+            <ItemsComponent items={items}/>
         </>
     );
 }

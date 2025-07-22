@@ -1,6 +1,6 @@
 import type {Metadata} from "next"
 import {apiSite} from "@/apis"
-import ItemApiSite from "@/components/items/itemApiSite"
+import ItemComponent from "@/components/items"
 import {config} from "@/config";
 
 const found = config.url.find(
@@ -18,7 +18,7 @@ export default async function Home() {
     return (
         <>
 
-            <ItemApiSite items={items}/>
+            <ItemComponent items={items}/>
         </>
     );
 }

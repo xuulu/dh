@@ -6,15 +6,15 @@ import {config} from "@/config";
 export const metadata: Metadata = {
     title: {
         template: `%s | ${config.title}`,
-        default: "hao123",
+        default: "简心导航",
     },
     description: config.description,
     openGraph: {
         title: {
             template: `%s | ${config.title}`,
-            default: "hao123",
+            default: "简心导航",
         },
-        description: "安全可靠的接口服务平台",
+        description: "本站主要提供各种网站导航，如：实用网站导航，实用接口导航，接口网站导航等",
         url: config.baseUrl,
         locale: "zh-CN",
         type: "website",

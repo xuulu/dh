@@ -1,29 +1,29 @@
-import {apis,apiSite} from "@/apis"
+import * as api from "@/apis"
+import ItemsComponent from "@/components/items";
+import SectionHeader from '@/components/SectionHeader'
+
 
 export default async function Home() {
-    const a = await apis().then(res => res.length)
-    const b = await apiSite().then(res => res.length)
+    const count = 3
+    const tool = await api.tool().then((res) => res.slice(0, count))
+    const apis = await api.apis().then((res) => res.slice(0, count))
+    const apiSite = await api.apiSite().then((res) => res.slice(0, count))
 
 
     return (
         <>
-            <h1 className="text-3xl font-bold color-[red]">↖ 点击左上角查看</h1>
             <br/>
-
-            <h1>统计数据：</h1>
+            <SectionHeader title="热门工具" link="/tools"/>
+            <ItemsComponent items={tool}/>
 
             <br/>
+            <SectionHeader title="热门工具" link="/tools"/>
+            <ItemsComponent items={apis}/>
 
-            <div className="stats stats-vertical lg:stats-horizontal shadow w-full">
-                <div className="stat">
-                    <div className="stat-title">api数量</div>
-                    <div className="stat-value">{a}</div>
-                </div>
-                <div className="stat">
-                    <div className="stat-title">api网站数量</div>
-                    <div className="stat-value">{b}</div>
-                </div>
-            </div>
+            <br/>
+            <SectionHeader title="热门工具" link="/tools"/>
+            <ItemsComponent items={apiSite}/>
+
         </>
     );
 }

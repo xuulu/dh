@@ -1,6 +1,6 @@
-import type {TypeApiSite} from "@/type/api"
+import type {TypeApi} from "@/type/api"
 
-const data: TypeApiSite[] = [
+const data: TypeApi[] = [
     {
         title: '简心API',
         url: 'https://api.qvqa.cn/',
