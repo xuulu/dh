@@ -1,10 +1,10 @@
 import apis from "./apis"
 import apiSite from "./apiSite"
-import tool from "./tool"
+import siteNavigate from "./siteNavigate"
 
 
 export {
     apis,
     apiSite,
-    tool
+    siteNavigate,
 }

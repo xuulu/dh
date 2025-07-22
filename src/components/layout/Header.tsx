@@ -43,15 +43,16 @@ export default function Header() {
                 </div>
             </div>
             <div className="navbar-center">
-                <a className="btn btn-ghost text-xl">
+                <Link className="btn btn-ghost text-xl" href='/'>
                     {title}
-                </a>
+                </Link>
             </div>
             <div className="navbar-end">
-
                 <button
                     className="btn btn-soft btn-primary"
-                    onClick={() => {window.open('https://wj.qq.com/s2/22690024/7ddc/')}}
+                    onClick={() => {
+                        window.open('https://wj.qq.com/s2/22690024/7ddc/')
+                    }}
                 >
                     收录
                 </button>

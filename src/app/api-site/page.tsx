@@ -10,11 +10,18 @@ const found = config.url.find(
 export const metadata: Metadata = {
     title: found?.title,
     description: found?.description,
+    openGraph: {
+        title: found?.title,
+        description: found?.description,
+    },
 };
 
 
 export default async function Home() {
     const items = await apiSite()
+
+
+
     return (
         <>
 

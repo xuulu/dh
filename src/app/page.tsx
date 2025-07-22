@@ -1,31 +1,37 @@
-import * as api from "@/apis"
+import * as api from "@/apis";
 import ItemsComponent from "@/components/items";
-import SectionHeader from '@/components/SectionHeader'
-
+import SectionHeader from '@/components/SectionHeader';
+import {config} from "@/config";
 
 export default async function Home() {
-    const count = 3
-    const tool = await api.tool().then((res) => res.slice(0, count))
-    const apis = await api.apis().then((res) => res.slice(0, count))
-    const apiSite = await api.apiSite().then((res) => res.slice(0, count))
+    const count = config.count;
 
+    // 动态获取数据
+    const fetchData = async (path: string) => {
+        const apiMap: Record<string, () => Promise<any>> = {
+            "/site-navigate": () => api.siteNavigate(),
+            "/apis": () => api.apis(),
+            "/api-site": () => api.apiSite(),
+        };
+
+        return apiMap[path] ? await apiMap[path]().then((res) => res.slice(0, count)) : [];
+    };
+
+    // 预加载数据
+    const dataPromises = config.url.map(({path}) => fetchData(path));
+
+    const dataResults = await Promise.all(dataPromises);
 
     return (
         <>
-            <br/>
-            <SectionHeader title="热门工具" link="/tools"/>
-            <ItemsComponent items={tool}/>
-
-            <br/>
-            <SectionHeader title="热门工具" link="/tools"/>
-            <ItemsComponent items={apis}/>
-
-            <br/>
-            <SectionHeader title="热门工具" link="/tools"/>
-            <ItemsComponent items={apiSite}/>
-
+            {config.url
+                .map(({path, title}, index) => (
+                    <div key={path}>
+                        <br/>
+                        <SectionHeader title={title} link={path}/>
+                        <ItemsComponent items={dataResults[index]}/>
+                    </div>
+                ))}
         </>
     );
 }
-
-

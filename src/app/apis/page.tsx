@@ -4,12 +4,16 @@ import ItemsComponent from "@/components/items";
 import {config} from "@/config";
 
 const found = config.url.find(
-    item => item.path === '/aps');
+    item => item.path === '/apis');
 
 
 export const metadata: Metadata = {
     title: found?.title,
     description: found?.description,
+    openGraph: {
+        title: found?.title,
+        description: found?.description,
+    },
 };
 
 
