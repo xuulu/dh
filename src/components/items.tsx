@@ -1,6 +1,6 @@
 'use client'
 import type { TypeApi } from "@/type/api";
-import SearchBar from "@/components/SearchBar";
+import SearchBar from "./SearchBar";
 import { useRef, useState } from "react";
 import {usePathname} from "next/navigation";
 import {config} from "@/config";
