@@ -1,31 +1,35 @@
-import * as api from "@/apis"
 import ItemsComponent from "@/components/items";
 import SectionHeader from '@/components/SectionHeader'
-
+import {config} from "@/config";
 
 export default async function Home() {
-    const count = 3
-    const tool = await api.tool().then((res) => res.slice(0, count))
-    const apis = await api.apis().then((res) => res.slice(0, count))
-    const apiSite = await api.apiSite().then((res) => res.slice(0, count))
+    const count = config.const
 
+    // 动态处理所有分类
+    const categories = await Promise.all(
+        config.url
+            .filter(item => item.path !== '/') // 排除首页
+            .map(async (category) => {
+                // 截取前 count 个项目
+                category.list = category.list.slice(0, count)
+                return {
+                    ...category,
+                };
+            })
+    );
 
     return (
         <>
-            <br/>
-            <SectionHeader title="热门工具" link="/tools"/>
-            <ItemsComponent items={tool}/>
-
-            <br/>
-            <SectionHeader title="热门工具" link="/tools"/>
-            <ItemsComponent items={apis}/>
-
-            <br/>
-            <SectionHeader title="热门工具" link="/tools"/>
-            <ItemsComponent items={apiSite}/>
-
+            {categories.map((category, index) => (
+                <div key={index}>
+                    <br/>
+                    <SectionHeader
+                        title={category.title}
+                        link={category.path}
+                    />
+                    <ItemsComponent items={category.list}/>
+                </div>
+            ))}
         </>
     );
 }
-
-

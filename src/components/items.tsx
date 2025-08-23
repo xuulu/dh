@@ -1,10 +1,12 @@
 'use client'
-
 import type {TypeApi} from "@/type/api"
 
 export default function ItemApiSite(
-    {items}: { items: TypeApi[] }
+    {items}: { items: TypeApi[] | undefined }
 ) {
+
+    if (!items) return <h1>无数据！！！！！！</h1>
+
 
     return (
         <>
@@ -26,20 +28,20 @@ export default function ItemApiSite(
                                     {item.title}
                                 </div>
                                 <div className="text-xs uppercase font-semibold opacity-60">
-                                    {item.description}
+                                    {item.description || "该站没有简介喵~"}
                                 </div>
 
                                 <div>
                                     {item.tags?.map((tag, index) => (
-                                        <>
-                                            <div
-                                                key={index}
-                                                className="badge badge-outline badge-accent badge-xs"
-                                            >
-                                                {tag}
-                                            </div>
-                                            &nbsp;
-                                        </>
+
+                                        <div
+                                            key={index}
+                                            className="badge badge-outline badge-accent badge-xs"
+                                        >
+                                            {tag}
+                                        </div>
+
+
                                     ))}
                                 </div>
 
@@ -52,10 +54,10 @@ export default function ItemApiSite(
                                 }}>
                                 跳转
                             </button>
-                            {/*<button className="btn btn-soft btn-secondary"></button>*/}
-
                         </li>
-                    ))}
+
+                    ))
+                }
             </ul>
         </>
     )
